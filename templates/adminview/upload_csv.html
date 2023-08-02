@@ -1,0 +1,9 @@
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <h2>Upload Resume Files</h2>
+  <input type="file" name="resume_files" multiple required accept=".pdf,.doc,.docx">
+  <br><br>
+  <h2>Upload CSV File</h2>
+  {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>

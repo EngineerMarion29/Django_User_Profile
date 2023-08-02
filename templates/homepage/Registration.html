@@ -1,0 +1,64 @@
+<!-- create_user_profile.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create User Profile</title>
+  <style>
+    /* Add your custom CSS styles here */
+  </style>
+</head>
+<body>
+  <h1>Create User Profile</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+      {{ form.first_name.errors }}
+      <label for="{{ form.first_name.id_for_label }}">First Name:</label>
+      {{ form.first_name }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.last_name.errors }}
+      <label for="{{ form.last_name.id_for_label }}">Last Name:</label>
+      {{ form.last_name }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.email_address.errors }}
+      <label for="{{ form.email_address.id_for_label }}">Email Address:</label>
+      {{ form.email_address }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.age.errors }}
+      <label for="{{ form.age.id_for_label }}">Age:</label>
+      {{ form.age }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.position.errors }}
+      <label for="{{ form.position.id_for_label }}">Position:</label>
+      {{ form.position }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.years_of_experience.errors }}
+      <label for="{{ form.years_of_experience.id_for_label }}">Years of Experience:</label>
+      {{ form.years_of_experience }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.previous_company.errors }}
+      <label for="{{ form.previous_company.id_for_label }}">Previous Company:</label>
+      {{ form.previous_company }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.resume.errors }}
+      <label for="{{ form.resume.id_for_label }}">Resume:</label>
+      {{ form.resume }}
+    </div>
+    <div class="fieldWrapper">
+      {{ form.gender.errors }}
+      <label for="{{ form.gender.id_for_label }}">Gender:</label>
+      {{ form.gender }}
+    </div>
+    <input type="submit" value="Save" name="_save">
+    <input type="submit" value="Save and Add Another" name="_addanother">
+  </form>
+</body>
+</html>

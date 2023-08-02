@@ -1,0 +1,55 @@
+<!-- user_profile_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Profile List</title>
+  <style>
+
+  </style>
+</head>
+<body>
+  <h1>User Profile List</h1>
+
+  <form method="get" action="{% url 'admin_view:list' %}">
+    <input type="text" name="q" placeholder="Search by first name" value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <form id="delete-form" method="post" action="{% url 'admin_view:deletee' %}">
+    {% csrf_token %}
+    {% if profiles %}
+      {% for profile in profiles %}
+        <div>
+          <input type="checkbox" name="selected_profiles" value="{{ profile.id }}">
+          <a href="{% url 'admin_view:view_prof' profile.id %}">{{ profile.first_name }}</a>
+          <!-- Display other profile fields as needed -->
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No results from the entered keyword.</p>
+    {% endif %}
+
+    <input type="button" value="Delete Selected" onclick="showConfirmation()">
+    <input type="submit" value="Delete All" name="delete_all" onclick="return confirmDeleteAll()">
+  </form>
+
+  <form action="{% url 'regandlogin:reg_user' %}" method="get">
+    <button type="submit">Add Another</button>
+  </form>
+
+  <script>
+    function showConfirmation() {
+      if (confirm("Are you sure you want to delete the user profile/s?")) {
+        document.getElementById("delete-form").submit();
+      }
+    }
+
+    function confirmDeleteAll() {
+      return confirm("Are you sure you want to delete all user profiles?");
+    }
+  </script>
+
+
+<br><br><a href="{% url 'admin_view:users' %}">Go to Admin Page</a>
+</body>
+</html>

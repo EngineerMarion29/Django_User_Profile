@@ -1,10 +1,11 @@
-# Use CentOS 8 as the base image
-FROM centos:8
+# Use CentOS 9 as the base image
+#FROM centos:8
+FROM quay.io/centos/centos:stream9
 
 #Support centos8 end of life
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+#RUN cd /etc/yum.repos.d/
+#RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+#RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
 # Install system dependencies
 RUN yum -y update && \

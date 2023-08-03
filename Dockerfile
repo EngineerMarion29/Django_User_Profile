@@ -14,7 +14,7 @@ RUN yum -y update && \
 WORKDIR /userprofile_app
 
 # Copy the Django app files into the container
-COPY . /app
+COPY . .
 
 # Install Python dependencies
 RUN pip3 install -r requirements.txt

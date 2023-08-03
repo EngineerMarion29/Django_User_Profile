@@ -24,7 +24,8 @@ WORKDIR /userprofile_app
 COPY . .
 
 # Install Python dependencies
-RUN pip3 install -r requirements.txt
+RUN python3.11 -m ensurepip \
+    && pip3.11 install -r requirements.txt
 
 # Expose the Django development server port (change as needed)
 EXPOSE 8000

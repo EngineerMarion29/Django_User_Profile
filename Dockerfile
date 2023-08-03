@@ -3,19 +3,19 @@ FROM centos:8
 #FROM quay.io/centos/centos:stream9
 
 #Support centos8 end of life
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+RUN cd /etc/yum.repos.d/ \
+    && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* \
+    && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
 # Install system dependencies
-RUN yum -y update
-RUN yum -y install gcc openssl-devel bzip2-devel sqlite-devel 
-RUN yum -y install wget
-RUN wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz 
-RUN tar xzf Python-3.11.3.tgz 
-RUN cd Python-3.11.3 
-RUN ./configure --enable-optimizations 
-RUN make altinstall 
+RUN yum -y update \
+    && yum -y install gcc openssl-devel bzip2-devel sqlite-devel \
+    && yum -y install wget \
+    && wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz \
+    && tar xzf Python-3.11.3.tgz \
+    && cd Python-3.11.3 \
+    && ./configure --enable-optimizations \
+    && make altinstall
 
 # Set the working directory inside the container
 WORKDIR /userprofile_app

@@ -1,15 +1,20 @@
-# Use CentOS 9 as the base image
-#FROM centos:8
-FROM quay.io/centos/centos:stream9
+# Use CentOS 8 as the base image
+FROM centos:8
+#FROM quay.io/centos/centos:stream9
 
 #Support centos8 end of life
-#RUN cd /etc/yum.repos.d/
-#RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-#RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+RUN cd /etc/yum.repos.d/
+RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
 # Install system dependencies
-RUN yum -y update && \
-    yum -y install python3.11 python3-pip
+RUN yum -y update
+RUN yum -y install gcc openssl-devel bzip2-devel sqlite-devel 
+RUN wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz 
+RUN tar xzf Python-3.11.3.tgz 
+RUN cd Python-3.11.3 
+RUN sudo ./configure --enable-optimizations 
+RUN sudo make altinstall 
 
 # Set the working directory inside the container
 WORKDIR /userprofile_app

@@ -1,5 +1,5 @@
 # Use CentOS 8 as the base image
-FROM centos:8
+FROM centos:9
 
 #Support centos8 end of life
 RUN cd /etc/yum.repos.d/
@@ -8,7 +8,7 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 
 # Install system dependencies
 RUN yum -y update && \
-    yum -y install python3 python3-pip
+    yum -y install python3.11 python3-pip
 
 # Set the working directory inside the container
 WORKDIR /userprofile_app

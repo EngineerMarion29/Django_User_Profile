@@ -9,7 +9,7 @@ RUN cd /etc/yum.repos.d/ \
 
 # Install system dependencies
 RUN yum -y update \
-    && yum -y install gcc openssl-devel bzip2-devel sqlite-devel \
+    && yum -y install gcc openssl-devel bzip2-devel sqlite-devel make \
     && yum -y install wget \
     && wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz \
     && tar xzf Python-3.11.3.tgz \

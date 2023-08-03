@@ -1,5 +1,5 @@
 # Use CentOS 8 as the base image
-FROM centos:9
+FROM centos:8
 
 #Support centos8 end of life
 RUN cd /etc/yum.repos.d/

@@ -1,5 +1,5 @@
-# Use CentOS 9 as the base image
-FROM centos:9
+# Use CentOS 8 as the base image
+FROM centos:8
 
 # Install system dependencies
 RUN dnf -y update && \

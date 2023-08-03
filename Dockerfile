@@ -10,6 +10,7 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 # Install system dependencies
 RUN yum -y update
 RUN yum -y install gcc openssl-devel bzip2-devel sqlite-devel 
+RUN yum -y install wget
 RUN wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz 
 RUN tar xzf Python-3.11.3.tgz 
 RUN cd Python-3.11.3 

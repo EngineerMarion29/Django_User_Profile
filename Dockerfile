@@ -2,8 +2,8 @@
 FROM centos:8
 
 # Install system dependencies
-RUN dnf -y update && \
-    dnf -y install python3 python3-pip
+RUN yum -y update && \
+    yum -y install python3 python3-pip
 
 # Set the working directory inside the container
 WORKDIR /userprofile_app

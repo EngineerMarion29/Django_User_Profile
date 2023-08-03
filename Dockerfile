@@ -14,8 +14,8 @@ RUN yum -y install wget
 RUN wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz 
 RUN tar xzf Python-3.11.3.tgz 
 RUN cd Python-3.11.3 
-RUN sudo ./configure --enable-optimizations 
-RUN sudo make altinstall 
+RUN ./configure --enable-optimizations 
+RUN make altinstall 
 
 # Set the working directory inside the container
 WORKDIR /userprofile_app

@@ -1,30 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Education(models.Model):
-    degree = models.CharField(max_length=100)
-    institution = models.CharField(max_length=200)
-    completion_year = models.IntegerField()
-
-class Certification(models.Model):
-    name = models.CharField(max_length=100)
-    issuing_organization = models.CharField(max_length=200)
-    issue_date = models.DateField()
-
-class CertificationFile(models.Model):
-    certification = models.ForeignKey(Certification, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='certification_files/')
-
-class Job(models.Model):
-    title = models.CharField(max_length=100)
-
-class PreviousJob(models.Model):
-    company_name = models.CharField(max_length=100)
-    start_date = models.DateField()
-    end_date = models.DateField()
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True)
+    password = models.CharField(max_length=128, default=None, null=True)
     age = models.IntegerField()
     resume = models.FileField(upload_to='media/')
     GENDER_CHOICES = (
@@ -32,12 +11,12 @@ class UserProfile(models.Model):
         ('F', 'Female'),
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=None)
-
-    highest_education = models.ManyToManyField(Education, blank=True)
-    certifications = models.ManyToManyField(Certification, blank=True)
-    certification_files = models.ManyToManyField(CertificationFile, blank=True)
-    job_applying_for = models.ForeignKey(Job, on_delete=models.CASCADE, null=True)
-    previously_employed_job = models.ForeignKey(PreviousJob, on_delete=models.CASCADE, null=True)
-
+    education_course_name = models.CharField(max_length=200, null=True, blank=True)
+    certifications = models.TextField(max_length=1000, null=True, blank=True)  # Store certifications as text
+    most_recent_job = models.CharField(max_length=100, null=True, blank=True)
+    linkedin_url = models.CharField(max_length=300, null=True, blank=True)
+    Applying_For = models.CharField(max_length=100, null=True, blank=True)
+    years_of_experience = models.IntegerField(null=True, blank=True)
+    previous_company = models.CharField(max_length=200, null=True, blank=True)
     def __str__(self):
-        return self.first_name
+        return self.user.username  # Assuming 'username' is a field of the User model

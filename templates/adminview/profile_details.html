@@ -1,20 +1,60 @@
-<!-- profile_details.html -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>Profile Details</title>
   <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
+    h1 {
+      text-align: center;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      row-gap: 8px;
+      column-gap: 16px;
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    dt {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1>Profile Details</h1>
-  <h2>{{ profile.first_name }}</h2>
-  <h2>{{ profile.last_name }}</h2>
-  <h2>{{ profile.email_address }}</h2>
-  <h2>{{ profile.age }}</h2>
-  <h2>{{ profile.years_of_experience }}</h2>
-  <h2>{{ profile.previous_company }}</h2>
-  <!-- Display other profile details as needed -->
+  <dl>
+    <dt>First Name:</dt>
+    <dd>{{ profile.user.first_name }}</dd>
+    <dt>Last Name:</dt>
+    <dd>{{ profile.user.last_name }}</dd>
+    <dt>Email:</dt>
+    <dd>{{ profile.user.email }}</dd>
+    <dt>Age:</dt>
+    <dd>{{ profile.age }}</dd>
+    <dt>Years of Experience:</dt>
+    <dd>{{ profile.years_of_experience }}</dd>
+    <dt>Previous Company:</dt>
+    <dd>{{ profile.previous_company }}</dd>
+    <dt>Gender:</dt>
+    <dd>{{ profile.get_gender_display }}</dd>
+    <dt>Education Course Name:</dt>
+    <dd>{{ profile.education_course_name }}</dd>
+    <dt>Certifications:</dt>
+    <dd>{{ profile.certifications }}</dd>
+    <dt>Most Recent Job:</dt>
+    <dd>{{ profile.most_recent_job }}</dd>
+    <dt>LinkedIn URL:</dt>
+    <dd>{{ profile.linkedin_url }}</dd>
+    <dt>Job Applying For:</dt>
+    <dd>{{ profile.Applying_For }}</dd>
+    <!-- Display other profile details as needed -->
+  </dl>
 </body>
 </html>

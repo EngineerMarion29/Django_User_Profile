@@ -1,10 +1,20 @@
-<!-- user_profile_list.html -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>User Profile List</title>
   <style>
-
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
   </style>
 </head>
 <body>
@@ -18,13 +28,38 @@
   <form id="delete-form" method="post" action="{% url 'admin_view:deletee' %}">
     {% csrf_token %}
     {% if profiles %}
-      {% for profile in profiles %}
-        <div>
-          <input type="checkbox" name="selected_profiles" value="{{ profile.id }}">
-          <a href="{% url 'admin_view:view_prof' profile.id %}">{{ profile.first_name }}</a>
-          <!-- Display other profile fields as needed -->
-        </div>
-      {% endfor %}
+      <table>
+        <tr>
+          <th></th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Education</th>
+          <th>Certifications</th>
+          <th>Years of Experience</th>
+          <th>Previous Company</th>
+          <th>Most Recent Job</th>
+          <th>Applying For</th>
+          <th>LinkedIn URL</th>
+        </tr>
+        {% for profile in profiles %}
+          <tr>
+            <td><input type="checkbox" name="selected_profiles" value="{{ profile.id }}"></td>
+            <td><a href="{% url 'admin_view:view_prof' profile.id %}">{{ profile.user.first_name }}</a></td>
+            <td>{{ profile.user.last_name }}</td>
+            <td>{{ profile.age }}</td>
+            <td>{{ profile.get_gender_display }}</td>
+            <td>{{ profile.education_course_name }}</td>
+            <td>{{ profile.certifications }}</td>
+            <td>{{ profile.years_of_experience }}</td>
+            <td>{{ profile.previous_company }}</td>
+            <td>{{ profile.most_recent_job }}</td>
+            <td>{{ profile.Applying_For }}</td>
+            <td>{{ profile.linkedin_url }}</td>
+          </tr>
+        {% endfor %}
+      </table>
     {% else %}
       <p>No results from the entered keyword.</p>
     {% endif %}
@@ -49,7 +84,6 @@
     }
   </script>
 
-
-<br><br><a href="{% url 'admin_view:users' %}">Go to Admin Page</a>
+  <br><br><a href="{% url 'admin_view:users' %}">Go to Admin Page</a>
 </body>
 </html>

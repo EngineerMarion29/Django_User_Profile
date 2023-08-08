@@ -23,21 +23,18 @@ def profile_admin(request):
 
         return render(request, 'adminview/profile_admin.html')
 
-
-#def user_profile_list(request):
-#    if request.method == 'GET':
-#        profiles = UserProfile.objects.all()
-#        return render(request, 'adminview/user_profile_list.html', {'profiles': profiles})
-
+from django.db.models import Q
+from .models import UserProfile
+from .forms import UserProfileForm  # Import your new form
 
 def user_profile_list(request):
     query = request.GET.get('q')
     profiles = UserProfile.objects.all()
     if query:
         profiles = profiles.filter(
-            Q(first_name__icontains=query) |
-            Q(last_name__icontains=query) |
-            Q(email_address__icontains=query) |
+            Q(user__first_name__icontains=query) |
+            Q(user__last_name__icontains=query) |
+            Q(user__email__icontains=query) |
             Q(age__icontains=query) |
             Q(position__icontains=query) |
             Q(years_of_experience__icontains=query) |
@@ -45,6 +42,7 @@ def user_profile_list(request):
             Q(gender__icontains=query)
         )
     return render(request, 'adminview/user_profile_list.html', {'profiles': profiles})
+
 
 def delete_user_profiles(request):
     if request.method == 'POST':
@@ -77,19 +75,26 @@ def bulk_upload_csv(request):
             decoded_file = csv_file.read().decode('utf-8')
             reader = csv.DictReader(decoded_file.splitlines())
             for row in reader:
-                UserProfile.objects.create(
+                user = User.objects.create(
+                    username=row['email'],  # Assuming email will be used as username
                     first_name=row['first_name'],
-                    last_name=row['last_name'],
-                    email_address=row['email_address'],
-                    age=int(row['age']),
-                    position=row['position'],
-                    years_of_experience=int(row['years_of_experience']),
-                    previous_company=row['previous_company'],
-                    resume=row['resume'],
-                    gender=row['gender']
+                    last_name=row['last_name']
                 )
 
-                # Prompt for resume file upload
+                user_profile = UserProfile.objects.create(
+                    user=user,
+                    age=int(row['age']),
+                    gender=row['gender'],
+                    education_course_name=row['education_course_name'],
+                    certifications=row['certifications'],
+                    most_recent_job=row['most_recent_job'],
+                    years_of_experience=int(row['years_of_experience']),
+                    previous_company=row['previous_company'],
+                    Applying_For=row['Applying_For'],
+                    linkedin_url=row['linkedin_url'],
+                    resume=row['resume']
+                )
+
                 resume_file = request.FILES.get('resume')
                 if resume_file:
                     resume_file_name = os.path.basename(resume_file.name)

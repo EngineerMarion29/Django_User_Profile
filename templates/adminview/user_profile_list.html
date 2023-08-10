@@ -21,7 +21,7 @@
   <h1>User Profile List</h1>
 
   <form method="get" action="{% url 'admin_view:list' %}">
-    <input type="text" name="q" placeholder="Search by keywords" value="{{ request.GET.q }}">
+    <input type="text" name="q" placeholder="Search by the name" value="{{ request.GET.q }}">
     <input type="text" name="education" placeholder="Education Course Name" value="{{ request.GET.education }}">
     <input type="text" name="recent_job" placeholder="Most Recent Job" value="{{ request.GET.recent_job }}">
     <input type="text" name="years_of_experience" placeholder="Years of Experience" value="{{ request.GET.years_of_experience }}">

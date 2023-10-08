@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +16,7 @@
       background-color: #f2f2f2;
     }
   </style>
-    <link rel="stylesheet" href="{% static 'adminview/style.css' %}" />
+    <link rel="stylesheet" href="style.css" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -29,44 +27,44 @@
     <nav>
       <div class="navbar">
         <div class="logo">
-          <img src="{% static 'adminview/logo.png' %}" alt="">
+          <img src="logo.png" alt="">
             <h1> WEBAPP</h1>
         </div>
         <ul>
-
-          <li><a href="{% url 'admin_view:list' %}">
+          
+          <li><a href="index.html">
             <i class="fas fa-chart-bar"></i>
             <a class="nav-item">Employee List</a>
           </a>
           </li>
-          <li><a href="{% url 'regandlogin:reg_user' %}">
+          <li><a href="registration.html">
             <i class="fas fa-user"></i>
             <span class="nav-item">Registration</span>
           </a>
           </li>
-          <li><a href="{% url 'admin_view:b_upload' %}">
+          <li><a href="bulk.html">
             <i class="fas fa-tasks"></i>
             <span class="nav-item">Bulk Register</span>
           </a>
           </li>
-          <li><a href="{% url 'admin_view:export_user_profiles' %}">
+          <li><a href="documents.html">
             <i class="fab fa-dochub"></i>
             <span class="nav-item">Documents</span>
           </a>
           </li>
-<!--
+<!-- 
           <li><a href="#">
             <i class="fas fa-cog"></i>
             <span class="nav-item">Setting</span>
           </a>
-
+                                                         
           </li>
           <li><a href="#">
             <i class="fas fa-question-circle"></i>
             <span class="nav-item">Help</span>
           </a>                                          -->
           </li>
-          <li><a href="{% static 'adminview/login.html' %}" class="logout">
+          <li><a href="login.html" class="logout">
             <i class="fas fa-sign-out-alt"></i>
             <span class="nav-item">Logout</span>
           </a>

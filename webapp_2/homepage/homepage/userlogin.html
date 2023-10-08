@@ -1,5 +1,3 @@
-{% load static %} <!-- Add this line to load the static template library -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-image: url('{% static "homepage/bg.jpg" %}'); /* Updated image reference */
+            background-image: url('bg.jpg');
         }
 
         header {
@@ -84,7 +82,7 @@
             transition: background-color 0.3s ease;
             display: flex;
             position: center;
-
+            
         }
 
         button[type="submit"]:hover {
@@ -100,8 +98,12 @@
 <body>
     <header>Profile Database | Web Application</header>
     <div class="login-container">
-      <img class="centered-image" src="{% static 'homepage/bg1.jpg' %}" alt="Centered Image"> <!-- Updated image reference -->
+      <img class="centered-image" src="bg1.jpg" alt="Centered Image">
         <div class="centered-text">
+
+
+
+
         <h1>Login</h1>
         <form method="post">
             {% csrf_token %}
